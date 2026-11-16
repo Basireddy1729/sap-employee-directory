@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>People · Employee Directory</title><link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/">p<span>People</span></a><span class="workspace">Employee workspace</span><span class="environment">Learning project</span></header>
+  <main>
+    <div class="eyebrow">YOUR TEAM, CONNECTED</div>
+    <section class="heading"><div><h1>Good people.<br>One place.</h1><p>Your team’s details, always within reach.</p></div><button id="add">+ Add employee</button></section>
+    <section class="stats" aria-label="Directory statistics"><article><span>Total employees</span><strong id="total">—</strong></article><article><span>Departments</span><strong id="departments">—</strong></article><article><span>Active employees</span><strong id="active">—</strong></article></section>
+    <section class="directory"><div class="toolbar"><div><h2>Employee directory</h2><span id="count">Loading your team…</span></div><div class="filters"><label><span class="sr-only">Search employees</span><input id="search" type="search" placeholder="Search name, role or email"></label><label><span class="sr-only">Filter department</span><select id="department"><option value="">All departments</option></select></label></div></div>
+      <p id="message" role="status" aria-live="polite"></p>
+      <div class="table-wrap"><table><thead><tr><th>Employee</th><th>Department / role</th><th>Location</th><th>Status</th><th><span class="sr-only">Actions</span></th></tr></thead><tbody id="employees"></tbody></table></div>
+      <div id="empty" hidden>No employees found. Try another search or add your first employee.</div>
+    </section>
+    <footer>Built with SAP CAP <span>Employee Directory · Your first BTP project</span></footer>
+  </main>
+  <dialog id="editor"><form id="employee-form"><div class="dialog-heading"><h2 id="dialog-title">Add employee</h2><button type="button" class="icon" id="close" aria-label="Close">×</button></div><p class="hint">Fields marked * are required.</p><div class="form-grid">
+    <label>First name *<input name="firstName" required maxlength="80" autocomplete="given-name"></label><label>Last name *<input name="lastName" required maxlength="80" autocomplete="family-name"></label>
+    <label class="wide">Email *<input name="email" type="email" required maxlength="160" autocomplete="email"></label>
+    <label>Department *<input name="department" required maxlength="80" list="department-list"><datalist id="department-list"><option>Engineering</option><option>People</option><option>Finance</option><option>Sales</option><option>Operations</option></datalist></label><label>Job title *<input name="jobTitle" required maxlength="120"></label>
+    <label>Location<input name="location" maxlength="100"></label><label>Start date<input name="startDate" type="date"></label>
+    <label>Status<select name="status"><option>Active</option><option>On Leave</option></select></label>
+  </div><p id="form-error" role="alert"></p><div class="dialog-actions"><button type="button" class="secondary" id="cancel">Cancel</button><button id="save" type="submit">Save employee</button></div></form></dialog>
+  <dialog id="delete-dialog"><h2>Delete employee?</h2><p id="delete-description"></p><p>This permanently removes their record.</p><p id="delete-error" role="alert"></p><div class="dialog-actions"><button id="keep" class="secondary">Keep employee</button><button id="confirm-delete" class="danger">Delete employee</button></div></dialog>
+</body></html>

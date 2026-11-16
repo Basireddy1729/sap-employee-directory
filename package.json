@@ -1,0 +1,46 @@
+{
+  "name": "sap-employee-directory",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Beginner SAP CAP employee directory",
+  "scripts": {
+    "start": "cds-serve",
+    "dev": "cds watch",
+    "db:setup": "cds deploy --to sqlite:db.sqlite",
+    "build": "cds build --production && node scripts/copy-ui.js",
+    "test": "node --test --test-concurrency=1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "[development]": { "credentials": { "url": "db.sqlite" } },
+        "[test]": { "credentials": { "url": ":memory:" } }
+      },
+      "auth": {
+        "kind": "dummy"
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana"
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@cap-js/hana": "^3",
+    "@sap/approuter": "^23.4.0",
+    "@sap/cds": "^10.2.2",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3.1.3",
+    "@sap/cds-dk": "^10.2.1"
+  }
+}
